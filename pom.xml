@@ -21,8 +21,7 @@
         <java.version>11</java.version>
         <start-class>at.technikumwien.MainApp</start-class>
 
-        <skip-unit-tests>false</skip-unit-tests>
-        <skip-extended-tests>true</skip-extended-tests>
+        <skip-mockmvc-tests>false</skip-mockmvc-tests>
     </properties>
 
     <dependencies>
@@ -86,32 +85,29 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <skip>${skip-unit-tests}</skip>
+                    <skip>${skip-mockmvc-tests}</skip>
                     <includes>
                         <include>**/*.*</include>
                     </includes>
-                    <excludedGroups>extended</excludedGroups>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <configuration>
-                    <skip>${skip-extended-tests}</skip>
-                    <includes>
-                        <include>**/*.*</include>
-                    </includes>
-                    <groups>extended</groups>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
+                            <goal>test</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <!-- profile to disable or enable mockmvc test -->
+    <profiles>
+        <profile>
+            <id>exclude-mockmvc-tests</id>
+            <properties>
+                <skip-mockmvc-tests>true</skip-mockmvc-tests>
+            </properties>
+        </profile>
+    </profiles>
 </project>
