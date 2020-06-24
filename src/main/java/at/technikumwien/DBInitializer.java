@@ -19,7 +19,8 @@ public class DBInitializer {
         carRepository.saveAll(
                 List.of(
                         new Car(CarType.PKW, "DB7", "Aston Martin", "petrol", 12, true),
-                        new Car(CarType.PKW, "3 BL", "Mazda", "diesel", 4, false)
+                        new Car(CarType.PKW, "3 BL", "Mazda", "diesel", 4, false),
+                        new Car(CarType.PKW, "5", "Mazda", "diesel", 4, false)
                 )
         );
     }
