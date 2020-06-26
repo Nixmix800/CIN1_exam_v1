@@ -17,32 +17,17 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@Tag("extended")
 public class CarResourceTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper om;
 
-    @Test
-    public void testRetrieve() throws Exception {
-        var requestBuilder = MockMvcRequestBuilders
-                .get("/resources/cars/1")
-                .accept(MediaType.APPLICATION_JSON);
-
-        mockMvc
-                .perform(requestBuilder)
-                // variant 1: uses expect methods
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(1));
-    }
-
+    //tests if List.size() == 2 if we retrieve all entries from our List
     @Test
     public void testRetrieveAll() throws Exception {
         var requestBuilder = MockMvcRequestBuilders
@@ -59,9 +44,8 @@ public class CarResourceTest {
                 }
         );
 
-        // variant 2: uses assert methods
         assertEquals(HttpStatus.OK.value(), response.getStatus());
         assertThat(response.getContentType()).containsIgnoringCase(MediaType.APPLICATION_JSON_VALUE);
-        assertEquals(1, cars.size());
+        assertEquals(2, cars.size());
     }
 }

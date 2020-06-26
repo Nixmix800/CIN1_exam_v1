@@ -15,28 +15,18 @@ import javax.persistence.*;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
-    private CarType carType;
+    private Long ID;
 
     @Column(nullable = false, length = 50)
-    private String name;
+    private String Brand;
 
     @Column(nullable = false, length = 50)
-    private String manufacturer;
+    private String Name;
 
-    @Column(nullable = false, length = 25)
-    private String driveType;
+    @Column(nullable = false, length = 6)
+    private int BuildYear;
 
-    @Column(nullable = true)
-    private int cylinderNum;
-
-    @Column(nullable = false)
-    private boolean jamesMayApproved;
-
-    public Car(CarType carType, String name, String manufacturer, String driveType, int cylinderNum, boolean jamesMayApproved) {
-        this(null, carType, name, manufacturer, driveType, cylinderNum, jamesMayApproved);
+    public Car(String brand, String name, int buildYear) {
+        this(null, brand, name, buildYear);
     }
 }

@@ -2,8 +2,7 @@ package at.technikumwien;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface CarRepository extends JpaRepository<Car, Long> {
-    List<Car> findAllByJamesMayApprovedTrue();
+    //we dont need any special method, so this stays empty
+    //I know that we really wouldn't need this but I think it's a lot cleaner
 }

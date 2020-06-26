@@ -1,27 +1,22 @@
 package at.technikumwien;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+//this defines our REST-Service
 @RestController
 @RequestMapping("/resources/cars")
 public class CarResource {
     @Autowired
     private CarRepository carRepository;
 
-    @GetMapping("/{id}")
-    public Car retrieve(@PathVariable long id) {
-        return carRepository.findById(id).get();
-    }
-
+    //this returns all entities of our database
     @GetMapping
-    public List<Car> retrieveAll(@RequestParam(defaultValue = "false") boolean all) {
-        if (all) {
-            return carRepository.findAll();
-        }
-
-        return carRepository.findAllByJamesMayApprovedTrue();
+    public List<Car> retrieveAll() {
+        return carRepository.findAll();
     }
 }
